@@ -1,0 +1,6 @@
+target/
+.metadata
+tar.gz
+.classpath
+.project
+.settings/
