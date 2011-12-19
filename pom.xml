@@ -5,6 +5,19 @@
   <version>0.9</version>
   <name>Tapestry WRO4J</name>
   <description>Web Resource Optimizer integration for Tapestry 5.3</description>
+  <url>https://github.com/lltyk/tapestry-wro4j</url>
+  
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <scm>
+    <url>git://github.com/lltyk/tapestry-wro4j.git</url>
+  </scm>
   
   <dependencies>
     <dependency>
