@@ -1,6 +1,6 @@
 # Tapestry WRO4J
 
-Adds support for various Web Resource Optimizer components to Tapestry 5.3
+Adds support for various [Web Resource Optimizer](http://code.google.com/p/wro4j/) components to Tapestry 5.3
 
 Included are various choices of JavaScript and CSS minifiers, and
 Less/Sass/Coffeescript transformers.
