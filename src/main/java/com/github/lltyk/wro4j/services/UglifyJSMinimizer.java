@@ -10,7 +10,6 @@ import org.apache.tapestry5.ioc.OperationTracker;
 import org.apache.tapestry5.services.assets.StreamableResource;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.WroRuntimeException;
 import ro.isdc.wro.extensions.processor.support.ObjectPoolHelper;
 import ro.isdc.wro.extensions.processor.support.uglify.UglifyJs;
 import ro.isdc.wro.util.ObjectFactory;
@@ -46,7 +45,7 @@ public class UglifyJSMinimizer extends AbstractMinimizer
     try {
       output.write(engine.process(content));
       return;
-    } catch (final WroRuntimeException e) {
+    } catch (final RuntimeException e) {
       final String resourceUri = resource == null ? StringUtils.EMPTY : "[" + resource.getDescription() + "]";
       log.warn("Exception while applying " + getClass().getSimpleName() + " processor on the " + resourceUri
         + " resource, no processing applied...", e);
