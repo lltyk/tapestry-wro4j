@@ -34,3 +34,6 @@ flag is set. You can enable it manually in your AppModule like so:
     {
       configuration.add(SymbolConstants.MINIFICATION_ENABLED, "true");
     }
+
+UglifyJSMinimizer does not work with Prototype at the moment, anything that
+uses Class.extend fails (which includes anything that uses Ajax.request).
