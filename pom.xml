@@ -3,6 +3,7 @@
   <groupId>com.github.lltyk</groupId>
   <artifactId>tapestry-wro4j</artifactId>
   <version>0.9</version>
+  <packaging>jar</packaging>
   <name>Tapestry WRO4J</name>
   <description>Web Resource Optimizer integration for Tapestry 5.3</description>
   <url>https://github.com/lltyk/tapestry-wro4j</url>
@@ -16,6 +17,8 @@
   </licenses>
   
   <scm>
+    <connection>scm:git:git@github.com:lltyk/tapestry-wro4j.git</connection>
+	<developerConnection>scm:git:git@github.com:lltyk/tapestry-wro4j.git</developerConnection>
     <url>git://github.com/lltyk/tapestry-wro4j.git</url>
   </scm>
   
