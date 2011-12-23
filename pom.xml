@@ -49,7 +49,7 @@
           <archive>
             <manifestEntries>
               <Built-By>lltyk</Built-By>
-              <Tapestry-Module-Classes>com.github.lltk.services.WRO4JModule</Tapestry-Module-Classes>
+              <Tapestry-Module-Classes>com.github.lltyk.wro4j.services.WRO4JModule</Tapestry-Module-Classes>
             </manifestEntries>
           </archive>
         </configuration>
