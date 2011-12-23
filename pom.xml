@@ -22,6 +22,14 @@
     <url>git://github.com/lltyk/tapestry-wro4j.git</url>
   </scm>
   
+  <developers>
+    <developer>
+      <id>lltyk</id>
+	  <name>llytk</name>
+	  <email>lltyk@hotmail.com</email>
+    </developer>
+  </developers>
+  
   <dependencies>
     <dependency>
       <groupId>org.apache.tapestry</groupId>
