@@ -1,51 +1,34 @@
 package com.github.lltyk.wro4j.services;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.tapestry5.ioc.Resource;
-import org.apache.tapestry5.services.assets.ResourceDependencies;
-import org.apache.tapestry5.services.assets.ResourceTransformer;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.extensions.processor.support.ObjectPoolHelper;
-import ro.isdc.wro.extensions.processor.support.less.LessCss;
-import ro.isdc.wro.util.ObjectFactory;
+import ro.isdc.wro.config.jmx.WroConfiguration;
+import ro.isdc.wro.extensions.processor.css.LessCssProcessor;
+import ro.isdc.wro.model.resource.Resource;
+import ro.isdc.wro.model.resource.ResourceType;
 
 
 /**
  * Transforms <code>.less</code> to CSS.
  */
 
-public class LessCssTransformer implements ResourceTransformer
+public class LessCssTransformer extends AbstractTransformer
 {
   private final Logger log;
-  private final ObjectPoolHelper<LessCss> enginePool;
 
-  public LessCssTransformer(final Logger log) {
+  public LessCssTransformer(final Logger log, final WroConfiguration config) {
+    super(log, config);
     this.log = log;
-    enginePool = new ObjectPoolHelper<LessCss>(new ObjectFactory<LessCss>() {
-      @Override
-      public LessCss create() {
-        return new LessCss();
-      }
-    });
   }
 
   @Override
-  public InputStream transform(Resource source, ResourceDependencies dependencies) throws IOException {
-    Reader reader = new InputStreamReader(source.openStream(), "UTF-8");
-    String content = IOUtils.toString(reader);
-    reader.close();
-    LessCss lessCss = enginePool.getObject();
-    try {
-      return new ByteArrayInputStream(lessCss.less(content).getBytes("UTF-8"));
-    } finally {
-      enginePool.returnObject(lessCss);
-    }
+  public String doTransform(String name, String content) throws IOException {
+    StringWriter writer = new StringWriter();
+    new LessCssProcessor().process(Resource.create(name, ResourceType.CSS), new StringReader(content), writer);
+    return writer.toString();
   }
 }

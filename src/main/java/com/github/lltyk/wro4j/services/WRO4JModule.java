@@ -8,6 +8,8 @@ import org.apache.tapestry5.services.assets.ContentTypeAnalyzer;
 import org.apache.tapestry5.services.assets.ResourceMinimizer;
 import org.apache.tapestry5.services.assets.ResourceTransformer;
 
+import ro.isdc.wro.config.jmx.WroConfiguration;
+
 
 public class WRO4JModule
 {
@@ -31,5 +33,10 @@ public class WRO4JModule
   {
     configuration.addInstance("text/javascript", GoogleClosureJSMinimizer.class);
     configuration.addInstance("text/css", YuiCssMinimizer.class);
+  }
+
+  public WroConfiguration buildDefaultConfiguration()
+  {
+    return new WroConfiguration();
   }
 }
