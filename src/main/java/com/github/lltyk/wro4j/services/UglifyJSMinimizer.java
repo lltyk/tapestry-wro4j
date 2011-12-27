@@ -31,7 +31,7 @@ public class UglifyJSMinimizer extends AbstractMinimizer
     enginePool = new ObjectPoolHelper<UglifyJs>(new ObjectFactory<UglifyJs>() {
       @Override
       public UglifyJs create() {
-        return UglifyJs.uglifyJs();
+        return UglifyJs.uglifyJs("$super");
       }
     });
   }
@@ -43,7 +43,7 @@ public class UglifyJSMinimizer extends AbstractMinimizer
     reader.close();
     UglifyJs engine = enginePool.getObject();
     try {
-      output.write(engine.process(content));
+      output.write(engine.process(resource.getDescription(), content));
       return;
     } catch (final RuntimeException e) {
       final String resourceUri = resource == null ? StringUtils.EMPTY : "[" + resource.getDescription() + "]";
