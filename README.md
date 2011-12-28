@@ -6,14 +6,23 @@ Included are various choices of JavaScript and CSS minifiers, and
 Less/Sass/Coffeescript transformers.
 
 ## Usage
-At the moment the submodule is not in the jar manifest, so you will have to add
-"@SubModule(WRO4JModule.class)" to your AppModule.
 
 The transformers automatically associate with their file extensions, simply
 create one (a .coffee file for example), and include it on a page just as you
 would a js file:
 
     @Import(library="somefile.coffee",stylesheet="someotherfile.less")
+
+The transformers can also be associated with .js and .css files. if you link
+foo.css and a foo.less file exists, then the foo.less file is transformed and
+sent as foo.css to the browser. Unfortunately an actual empty foo.css is needed
+to satisfy Tapestry's asset-existance checking. You can enable this association
+in the AppModule like this:
+
+    public static void contributeStreamableResourceSource(MappedConfiguration<String, ResourceTransformer> configuration)
+    {
+        configuration.addInstace("css", LessCssTransformer.class);
+    }
 
 By default, Google Closure Compiler is used for JS minimization, and YUI is
 used for CSS. Other choices for JS include UglifyJSMinimizer and
@@ -40,3 +49,4 @@ uses Class.extend fails (which includes anything that uses Ajax.request).
 ## 0.9
 WRO4JModule needs to be included manually with @SubModule.
 Minifiers need to be added manually using contributeMinimizers.
+.js/.css file extensions can't be used with the transformers.

@@ -21,7 +21,7 @@ public class CoffeeScriptJsTransformer extends AbstractTransformer
   private final Logger log;
 
   public CoffeeScriptJsTransformer(final Logger log, final WroConfiguration config) {
-    super(log,config);
+    super(log, config, "js", "coffee");
     this.log = log;
   }
 

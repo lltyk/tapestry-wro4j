@@ -21,7 +21,7 @@ public class LessCssTransformer extends AbstractTransformer
   private final Logger log;
 
   public LessCssTransformer(final Logger log, final WroConfiguration config) {
-    super(log, config);
+    super(log, config, "css", "less");
     this.log = log;
   }
 

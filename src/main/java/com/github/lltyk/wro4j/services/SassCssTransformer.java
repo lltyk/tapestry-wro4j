@@ -21,7 +21,7 @@ public class SassCssTransformer extends AbstractTransformer
   private final Logger log;
 
   public SassCssTransformer(final Logger log, final WroConfiguration config) {
-    super(log, config);
+    super(log, config, "css", "sass");
     this.log = log;
   }
 
