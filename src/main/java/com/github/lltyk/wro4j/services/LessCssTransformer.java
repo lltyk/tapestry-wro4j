@@ -10,6 +10,7 @@ import ro.isdc.wro.config.jmx.WroConfiguration;
 import ro.isdc.wro.extensions.processor.css.LessCssProcessor;
 import ro.isdc.wro.model.resource.Resource;
 import ro.isdc.wro.model.resource.ResourceType;
+import ro.isdc.wro.model.resource.processor.impl.css.CssImportPreProcessor;
 
 
 /**
@@ -26,9 +27,14 @@ public class LessCssTransformer extends AbstractTransformer
   }
 
   @Override
-  public String doTransform(String name, String content) throws IOException {
+  public String doTransform(String url, String content) throws IOException {
     StringWriter writer = new StringWriter();
-    new LessCssProcessor().process(Resource.create(name, ResourceType.CSS), new StringReader(content), writer);
+    Resource r = Resource.create(url, ResourceType.CSS);
+    CssImportPreProcessor preproc = getInjectedProcessor(CssImportPreProcessor.class);
+    preproc.process(r, new StringReader(content), writer);
+    content = writer.toString();
+    writer = new StringWriter();
+    new LessCssProcessor().process(r, new StringReader(content), writer);
     return writer.toString();
   }
 }
