@@ -23,7 +23,7 @@
   </scm>
   
   <properties>
-    <tapestry.version>5.3.1</tapestry.version>        
+    <tapestry.version>5.3.1</tapestry.version>
     <wro4j.version>1.4.3</wro4j.version>
     <junit.version>4.10</junit.version> 
     <mockito.version>1.9.0</mockito.version>  
@@ -32,8 +32,8 @@
   <developers>
     <developer>
       <id>lltyk</id>
-	  <name>llytk</name>
-	  <email>lltyk@hotmail.com</email>
+      <name>llytk</name>
+      <email>lltyk@hotmail.com</email>
     </developer>
   </developers>
   
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-core</artifactId>
-      <version>${tapestry.version}</version>      
+      <version>${tapestry.version}</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -70,7 +70,7 @@
        <artifactId>mockito-core</artifactId>
        <version>${mockito.version}</version>
        <scope>test</scope>
-     </dependency>            
+     </dependency>
   </dependencies>
   
   <build>
