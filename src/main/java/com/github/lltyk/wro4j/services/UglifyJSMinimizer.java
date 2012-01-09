@@ -43,7 +43,7 @@ public class UglifyJSMinimizer extends AbstractMinimizer
     reader.close();
     UglifyJs engine = enginePool.getObject();
     try {
-      output.write(engine.process(content));
+      output.write(engine.process("resource.js", content));
       return;
     } catch (final RuntimeException e) {
       final String resourceUri = resource == null ? StringUtils.EMPTY : "[" + resource.getDescription() + "]";
