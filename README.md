@@ -43,10 +43,13 @@ flag is set. You can enable it manually in your AppModule like so:
       configuration.add(SymbolConstants.MINIFICATION_ENABLED, "true");
     }
 
-UglifyJSMinimizer does not work with Prototype at the moment, anything that
-uses Class.extend fails (which includes anything that uses Ajax.request).
+## 0.9.1
+Automatically included WRO4JModule in jar manifest.
+Added Google Closure for JS and YUI for CSS as default minimizers.
+Fixed UglifyJS/Prototype interoperability.
 
 ## 0.9
+Initial Release
 WRO4JModule needs to be included manually with @SubModule.
 Minifiers need to be added manually using contributeMinimizers.
 .js/.css file extensions can't be used with the transformers.
