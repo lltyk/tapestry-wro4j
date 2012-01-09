@@ -26,7 +26,7 @@ public class SassCssTransformer extends AbstractTransformer
   }
 
   @Override
-  public String doTransform(String name, String content) throws IOException {
+  public String doTransform(final String name, final String content) throws IOException {
     StringWriter writer = new StringWriter();
     new SassCssProcessor().process(Resource.create(name, ResourceType.CSS), new StringReader(content), writer);
     return writer.toString();
