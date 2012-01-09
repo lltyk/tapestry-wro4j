@@ -18,8 +18,10 @@ import org.slf4j.Logger;
 
 import ro.isdc.wro.config.Context;
 import ro.isdc.wro.config.jmx.WroConfiguration;
+import ro.isdc.wro.manager.WroManager;
 import ro.isdc.wro.manager.factory.BaseWroManagerFactory;
 import ro.isdc.wro.model.group.processor.Injector;
+import ro.isdc.wro.model.group.processor.InjectorBuilder;
 
 
 /**
@@ -75,7 +77,8 @@ public abstract class AbstractTransformer implements ResourceTransformer
 
   protected <T> T getInjectedProcessor(Class<T> processClass) {
     try {
-      Injector injector = new Injector(new BaseWroManagerFactory().create());
+      WroManager manager = new BaseWroManagerFactory().create();
+      Injector injector = new InjectorBuilder(manager).build();
       T processor = processClass.newInstance();
       injector.inject(processor);
       return processor;

@@ -22,6 +22,13 @@
     <url>git://github.com/lltyk/tapestry-wro4j.git</url>
   </scm>
   
+  <properties>
+    <tapestry.version>5.3.1</tapestry.version>        
+    <wro4j.version>1.4.3</wro4j.version>
+    <junit.version>4.10</junit.version> 
+    <mockito.version>1.9.0</mockito.version>  
+  </properties>
+  
   <developers>
     <developer>
       <id>lltyk</id>
@@ -34,7 +41,7 @@
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-core</artifactId>
-      <version>5.3.1</version>
+      <version>${tapestry.version}</version>      
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -45,13 +52,25 @@
     <dependency>
       <groupId>ro.isdc.wro4j</groupId>
       <artifactId>wro4j-core</artifactId>
-      <version>1.4.2</version>
+      <version>${wro4j.version}</version>
     </dependency>
     <dependency>
       <groupId>ro.isdc.wro4j</groupId>
       <artifactId>wro4j-extensions</artifactId>
-      <version>1.4.2</version>
+      <version>${wro4j.version}</version>
     </dependency>
+     <dependency>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
+       <version>${junit.version}</version>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.mockito</groupId>
+       <artifactId>mockito-core</artifactId>
+       <version>${mockito.version}</version>
+       <scope>test</scope>
+     </dependency>            
   </dependencies>
   
   <build>
