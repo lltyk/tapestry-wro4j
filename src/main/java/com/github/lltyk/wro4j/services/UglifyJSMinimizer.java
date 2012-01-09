@@ -31,7 +31,9 @@ public class UglifyJSMinimizer extends AbstractMinimizer
     enginePool = new ObjectPoolHelper<UglifyJs>(new ObjectFactory<UglifyJs>() {
       @Override
       public UglifyJs create() {
-        return UglifyJs.uglifyJs("$super");
+        UglifyJs uglify = UglifyJs.uglifyJs();
+        uglify.setReservedNames("$super");
+        return uglify;
       }
     });
   }
