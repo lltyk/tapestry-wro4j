@@ -8,7 +8,10 @@ import org.apache.tapestry5.services.assets.ContentTypeAnalyzer;
 import org.apache.tapestry5.services.assets.ResourceMinimizer;
 import org.apache.tapestry5.services.assets.ResourceTransformer;
 
+import ro.isdc.wro.config.Context;
 import ro.isdc.wro.config.jmx.WroConfiguration;
+import ro.isdc.wro.manager.WroManager;
+import ro.isdc.wro.manager.factory.BaseWroManagerFactory;
 
 
 public class WRO4JModule
@@ -38,5 +41,15 @@ public class WRO4JModule
   public WroConfiguration buildDefaultConfiguration()
   {
     return new WroConfiguration();
+  }
+
+  public WroManager buildDefaultWroManager()
+  {
+    try {
+      Context.set(Context.standaloneContext());
+      return new BaseWroManagerFactory().create();
+    } finally {
+      Context.unset();
+    }
   }
 }

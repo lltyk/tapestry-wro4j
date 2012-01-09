@@ -1,18 +1,14 @@
 package com.github.lltyk.wro4j.services;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.StringReader;
+import java.io.StringWriter;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.tapestry5.ioc.OperationTracker;
-import org.apache.tapestry5.services.assets.StreamableResource;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.extensions.processor.support.ObjectPoolHelper;
-import ro.isdc.wro.extensions.processor.support.uglify.UglifyJs;
-import ro.isdc.wro.util.ObjectFactory;
+import ro.isdc.wro.model.resource.Resource;
+import ro.isdc.wro.model.resource.ResourceType;
 
 /**
  * JavaScript resource minimizer based on UglifyJS
@@ -20,42 +16,20 @@ import ro.isdc.wro.util.ObjectFactory;
  */
 public class UglifyJSMinimizer extends AbstractMinimizer
 {
-  private final Logger log;
-  private final ObjectPoolHelper<UglifyJs> enginePool;
+  @Inject
+  private Logger log;
 
-
-  public UglifyJSMinimizer(final Logger log, OperationTracker tracker)
+  public UglifyJSMinimizer()
   {
-    super(log, tracker, "UglifyJS");
-    this.log = log;
-    enginePool = new ObjectPoolHelper<UglifyJs>(new ObjectFactory<UglifyJs>() {
-      @Override
-      public UglifyJs create() {
-        UglifyJs uglify = UglifyJs.uglifyJs();
-        uglify.setReservedNames("$super");
-        return uglify;
-      }
-    });
+    super("UglifyJS");
   }
 
-  protected void doMinimize(StreamableResource resource, Writer output) throws IOException
+  @Override
+  protected String doMinimize(String desc, String content) throws IOException
   {
-    Reader reader = toReader(resource);
-    String content = IOUtils.toString(reader);
-    reader.close();
-    UglifyJs engine = enginePool.getObject();
-    try {
-      output.write(engine.process(resource.getDescription(), content));
-      return;
-    } catch (final RuntimeException e) {
-      final String resourceUri = resource == null ? StringUtils.EMPTY : "[" + resource.getDescription() + "]";
-      log.warn("Exception while applying " + getClass().getSimpleName() + " processor on the " + resourceUri
-        + " resource, no processing applied...", e);
-    } finally {
-      output.close();
-      enginePool.returnObject(engine);
-    }
-    //the fallback to unminimised
-    output.write(content);
+    StringReader reader = new StringReader(content);
+    StringWriter output = new StringWriter();
+    getInjectedProcessor(PrototypeUglifyJsProcessor.class).process(Resource.create(desc, ResourceType.JS), reader, output);
+    return output.toString();
   }
 }
