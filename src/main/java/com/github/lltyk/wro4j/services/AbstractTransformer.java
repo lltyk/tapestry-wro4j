@@ -18,17 +18,13 @@ import org.slf4j.Logger;
 
 import ro.isdc.wro.config.Context;
 import ro.isdc.wro.config.jmx.WroConfiguration;
-import ro.isdc.wro.manager.WroManager;
-import ro.isdc.wro.manager.factory.BaseWroManagerFactory;
-import ro.isdc.wro.model.group.processor.Injector;
-import ro.isdc.wro.model.group.processor.InjectorBuilder;
 
 
 /**
  * Takes care of reading the content and setting the WRO context.
  */
 
-public abstract class AbstractTransformer implements ResourceTransformer
+public abstract class AbstractTransformer extends Base implements ResourceTransformer
 {
   private final Logger log;
   private final WroConfiguration config;
@@ -74,19 +70,4 @@ public abstract class AbstractTransformer implements ResourceTransformer
   }
 
   public abstract String doTransform(String url, String content) throws IOException;
-
-  protected <T> T getInjectedProcessor(Class<T> processClass) {
-    try {
-      WroManager manager = new BaseWroManagerFactory().create();
-      Injector injector = new InjectorBuilder(manager).build();
-      T processor = processClass.newInstance();
-      injector.inject(processor);
-      return processor;
-    } catch (InstantiationException e) {
-      log.error("", e);
-    } catch (IllegalAccessException e) {
-      log.error("", e);
-    }
-    return null;
-  }
 }
