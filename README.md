@@ -47,8 +47,10 @@ flag is set. You can enable it manually in your AppModule like so:
 Automatically included WRO4JModule in jar manifest.  
 Added Google Closure for JS and YUI for CSS as default minimizers.  
 Fixed UglifyJS/Prototype interoperability.  
+WRO4J 1.4.3  
 
 ## 0.9
 Initial Release  
 WRO4JModule needs to be included manually with @SubModule.  
 Minifiers need to be added manually using contributeMinimizers.  
+WRO4J 1.4.2  
