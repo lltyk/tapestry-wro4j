@@ -26,25 +26,24 @@ import com.github.lltyk.wro4j.services.SassCssTransformer;
  * 
  * @author Alex Objelean
  */
-public class TestSassCssTransformer {
+public class TestSassCssTransformer extends BaseTest {
   private SassCssTransformer transformer;
-  
+
   @Test(expected=NullPointerException.class)
   public void cannotTransformNullResource() throws Exception {
-    transformer = new SassCssTransformer(null, null);
+    transformer = registry.autobuild(SassCssTransformer.class);
     transformer.doTransform(null, null);
   }
-  
+
   @Test(expected=NullPointerException.class)
   public void cannotTransformNullResourceContent() throws Exception {
-    transformer = new SassCssTransformer(null, null);
+    transformer = registry.autobuild(SassCssTransformer.class);
     transformer.doTransform("resourceName", null);
   }
-  
 
   @Test
   public void shouldTransformResourceContent() throws Exception {
-    transformer = new SassCssTransformer(null, null);
+    transformer = registry.autobuild(SassCssTransformer.class);
     Assert.assertEquals("", transformer.doTransform("resourceName", ""));
   }
 }

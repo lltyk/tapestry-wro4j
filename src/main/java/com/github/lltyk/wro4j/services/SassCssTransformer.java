@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.config.jmx.WroConfiguration;
 import ro.isdc.wro.extensions.processor.css.SassCssProcessor;
 import ro.isdc.wro.model.resource.Resource;
 import ro.isdc.wro.model.resource.ResourceType;
@@ -18,11 +18,11 @@ import ro.isdc.wro.model.resource.ResourceType;
 
 public class SassCssTransformer extends AbstractTransformer
 {
-  private final Logger log;
+  @Inject
+  private Logger log;
 
-  public SassCssTransformer(final Logger log, final WroConfiguration config) {
-    super(log, config, "css", "sass");
-    this.log = log;
+  public SassCssTransformer() {
+    super("css", "sass");
   }
 
   @Override

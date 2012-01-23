@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.config.jmx.WroConfiguration;
 import ro.isdc.wro.extensions.processor.css.LessCssProcessor;
 import ro.isdc.wro.model.resource.Resource;
 import ro.isdc.wro.model.resource.ResourceType;
@@ -19,11 +19,11 @@ import ro.isdc.wro.model.resource.processor.impl.css.CssImportPreProcessor;
 
 public class LessCssTransformer extends AbstractTransformer
 {
-  private final Logger log;
+  @Inject
+  private Logger log;
 
-  public LessCssTransformer(final Logger log, final WroConfiguration config) {
-    super(log, config, "css", "less");
-    this.log = log;
+  public LessCssTransformer() {
+    super("css", "less");
   }
 
   @Override

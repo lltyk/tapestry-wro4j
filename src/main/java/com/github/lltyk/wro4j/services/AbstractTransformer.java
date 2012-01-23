@@ -26,8 +26,10 @@ import ro.isdc.wro.config.jmx.WroConfiguration;
 
 public abstract class AbstractTransformer extends Base implements ResourceTransformer
 {
-  private final Logger log;
-  private final WroConfiguration config;
+  @Inject
+  private Logger log;
+  @Inject
+  private WroConfiguration config;
   @Inject
   private HttpServletRequest request;
   @Inject
@@ -36,10 +38,7 @@ public abstract class AbstractTransformer extends Base implements ResourceTransf
   private final String internalSuffix;
 
 
-  public AbstractTransformer(final Logger log, final WroConfiguration config,
-      final String externalSuffix, final String internalSuffix) {
-    this.log = log;
-    this.config = config;
+  public AbstractTransformer(final String externalSuffix, final String internalSuffix) {
     this.externalSuffix = externalSuffix;
     this.internalSuffix = internalSuffix;
   }

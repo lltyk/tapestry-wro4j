@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.config.jmx.WroConfiguration;
 import ro.isdc.wro.extensions.processor.js.CoffeeScriptProcessor;
 import ro.isdc.wro.model.resource.Resource;
 import ro.isdc.wro.model.resource.ResourceType;
@@ -18,11 +18,11 @@ import ro.isdc.wro.model.resource.ResourceType;
 
 public class CoffeeScriptJsTransformer extends AbstractTransformer
 {
-  private final Logger log;
+  @Inject
+  private Logger log;
 
-  public CoffeeScriptJsTransformer(final Logger log, final WroConfiguration config) {
-    super(log, config, "js", "coffee");
-    this.log = log;
+  public CoffeeScriptJsTransformer() {
+    super("js", "coffee");
   }
 
   @Override
