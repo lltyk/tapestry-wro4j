@@ -14,14 +14,20 @@
 
 package com.github.ltyk.wro4j.services;
 
+import java.io.IOException;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.tapestry5.ioc.Registry;
-import org.apache.tapestry5.ioc.test.IOCTestCase;
+import org.apache.tapestry5.ioc.Resource;
+import org.apache.tapestry5.ioc.internal.util.ClasspathResource;
+import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.TapestryModule;
+import org.apache.tapestry5.test.TapestryTestCase;
 import org.junit.After;
 import org.junit.Before;
 
 
-public class BaseTest extends IOCTestCase {
+public class BaseTest extends TapestryTestCase {
 
   protected static Registry registry;
 
@@ -30,6 +36,7 @@ public class BaseTest extends IOCTestCase {
   public void createRegistry()
   {
     registry = buildRegistry(TapestryModule.class, getModuleClass());
+    registry.getService(RequestGlobals.class).storeServletRequestResponse(mockHttpServletRequest(), mockHttpServletResponse());
   }
 
   @After
@@ -40,8 +47,18 @@ public class BaseTest extends IOCTestCase {
     }
   }
 
+  /** Override to run test with module setting changes */
   protected Class<?> getModuleClass()
   {
     return BaseTestModule.class;
+  }
+
+  protected static String getClasspathFile(String file) throws IOException
+  {
+    return IOUtils.toString(BaseTest.class.getClassLoader().getResourceAsStream(file), "UTF-8");
+  }
+
+  protected Resource getResource(String rootClasspathFile) {
+    return new ClasspathResource(rootClasspathFile);
   }
 }

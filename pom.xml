@@ -23,10 +23,10 @@
   </scm>
   
   <properties>
-    <tapestry.version>5.3.1</tapestry.version>
+    <tapestry.version>5.3.2</tapestry.version>
     <wro4j.version>1.4.3</wro4j.version>
     <junit.version>4.10</junit.version> 
-    <mockito.version>1.9.0</mockito.version>  
+    <mockito.version>1.9.0</mockito.version>
   </properties>
   
   <developers>
@@ -36,6 +36,13 @@
       <email>lltyk@hotmail.com</email>
     </developer>
   </developers>
+  
+  <repositories>
+    <repository>
+      <id>apache-staging</id>
+        <url>https://repository.apache.org/content/groups/staging/</url>
+    </repository>
+  </repositories>
   
   <dependencies>
     <dependency>
