@@ -43,6 +43,9 @@ flag is set. You can enable it manually in your AppModule like so:
       configuration.add(SymbolConstants.MINIFICATION_ENABLED, "true");
     }
 
+## 0.9.2
+Tapestry 5.3.2  
+
 ## 0.9.1
 Automatically included WRO4JModule in jar manifest.  
 Added Google Closure for JS and YUI for CSS as default minimizers.  
