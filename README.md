@@ -43,6 +43,10 @@ flag is set. You can enable it manually in your AppModule like so:
       configuration.add(SymbolConstants.MINIFICATION_ENABLED, "true");
     }
 
+## 0.9.4
+WRO4J 1.4.5  
+Experimental RequireJS support  
+
 ## 0.9.3
 WRO4J 1.4.4  
 
