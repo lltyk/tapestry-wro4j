@@ -43,6 +43,9 @@ flag is set. You can enable it manually in your AppModule like so:
       configuration.add(SymbolConstants.MINIFICATION_ENABLED, "true");
     }
 
+## 0.9.5
+Tapestry 5.3.3  
+
 ## 0.9.4
 WRO4J 1.4.5  
 Experimental RequireJS support  
