@@ -1,5 +1,7 @@
 # Tapestry WRO4J
 
+[![Build Status](http://travis-ci.org/lltyk/tapestry-wro4j.png)](http://travis-ci.org/lltyk/tapestry-wro4j)
+
 Adds support for various [Web Resource Optimizer](http://code.google.com/p/wro4j/) components to Tapestry 5.3
 
 Included are various choices of JavaScript and CSS minifiers, and
