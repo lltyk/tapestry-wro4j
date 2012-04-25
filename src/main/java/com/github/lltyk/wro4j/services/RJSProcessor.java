@@ -65,7 +65,8 @@ public class RJSProcessor implements ResourcePreProcessor {
     throws IOException {
     final String content = IOUtils.toString(reader);
     File out = File.createTempFile("rjsout", ".js");
-    List<String> args = Lists.newArrayList("-o", "name=" + FilenameUtils.getBaseName(resource.getUri()),
+    String module = resource.getUri().replace(baseUrl, "").replace(".js", "");
+    List<String> args = Lists.newArrayList("-o", "name=" + module,
         "baseUrl=" + baseUrl, "out=" + out.getPath(),
         "optimize=none"
     );
