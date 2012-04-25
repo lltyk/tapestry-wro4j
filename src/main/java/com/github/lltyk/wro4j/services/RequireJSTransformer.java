@@ -59,12 +59,15 @@ public class RequireJSTransformer extends Base implements ResourceTransformer
     return false;
   }
 
-  public String doTransform(InputStream sourceInput, final String file) throws IOException {
+  public String doTransform(InputStream sourceInput, String file) throws IOException {
     StringWriter writer = new StringWriter();
     String baseUrl = FilenameUtils.getFullPath(file);
     if (baseUrl.contains("/js/")) {
-      baseUrl = request.getRealPath("js/"); // hack, need to make baseUrl a param
+      int end = baseUrl.indexOf("/js/") + 4;
+      baseUrl = baseUrl.substring(0, end); // hack, need to make baseUrl a param
+      log.trace(baseUrl);
     }
+    file = file.replace(baseUrl, "").replace(".js", "");
     ro.isdc.wro.model.resource.Resource resource = ro.isdc.wro.model.resource.Resource.create(file, ResourceType.JS);
     new RJSProcessor(baseUrl, getPathsMap(), getAdditionalOptions()).process(
       resource, new InputStreamReader(sourceInput), writer);
