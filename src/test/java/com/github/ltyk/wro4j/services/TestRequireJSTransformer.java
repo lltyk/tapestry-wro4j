@@ -19,7 +19,7 @@ public class TestRequireJSTransformer extends BaseTest {
     transformer = registry.autobuild(RequireJSTransformer.class);
     File testfile = new File(getClass().getResource("/testrequire.js").getFile());
     String expected = IOUtils.toString(getClass().getResource("/testrequire-expected.js"));
-    Assert.assertEquals(expected, transformer.doTransform(testfile.getPath()));
+    Assert.assertEquals(expected, transformer.doTransform(getClass().getResourceAsStream("/testrequire.js"), testfile.getPath()));
   }
 
   @Test
@@ -27,7 +27,7 @@ public class TestRequireJSTransformer extends BaseTest {
     transformer = registry.autobuild(RequireJSTransformer.class);
     File testfile = new File(getClass().getResource("/testrequire.js").getFile());
     String expected = IOUtils.toString(getClass().getResource("/testrequire-expected.js"));
-    Assert.assertEquals(expected, transformer.doTransform(testfile.getPath()));
-    Assert.assertEquals(expected, transformer.doTransform(testfile.getPath()));
+    Assert.assertEquals(expected, transformer.doTransform(getClass().getResourceAsStream("/testrequire.js"),testfile.getPath()));
+    Assert.assertEquals(expected, transformer.doTransform(getClass().getResourceAsStream("/testrequire.js"),testfile.getPath()));
   }
 }
