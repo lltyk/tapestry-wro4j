@@ -34,14 +34,9 @@ public class WRO4JModule
 {
   private static final Logger log = LoggerFactory.getLogger(WRO4JModule.class);
 
-  public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration, ApplicationGlobals globals)
+  public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration)
   {
-    boolean hasWroFile = hasWroFile(globals);
-    if (hasWroFile) {
-      configuration.add(WRO4JSymbolConstants.ENABLE_WRO_FILTER, "true");
-    } else {
-      configuration.add(WRO4JSymbolConstants.ENABLE_WRO_FILTER, "false");
-    }
+    configuration.add(WRO4JSymbolConstants.AUTO_ENABLE_WRO_FILTER, "true");
     configuration.add(WRO4JSymbolConstants.ENABLE_LESS_TRANSFORMER, "true");
     configuration.add(WRO4JSymbolConstants.ENABLE_COFFEESCRIPT_TRANSFORMER, "true");
     configuration.add(WRO4JSymbolConstants.ENABLE_SASS_TRANSFORMER, "true");
@@ -105,10 +100,13 @@ public class WRO4JModule
 
   @Contribute(HttpServletRequestHandler.class)
   public static void httpServletRequestHandler(OrderedConfiguration<HttpServletRequestFilter> configuration,
-    @Symbol(WRO4JSymbolConstants.ENABLE_WRO_FILTER) Boolean enableFilter,
+    ApplicationGlobals globals,
+    @Symbol(WRO4JSymbolConstants.AUTO_ENABLE_WRO_FILTER) Boolean enableFilter,
     @InjectService("WroFilterWrapper") HttpServletRequestFilter wroFilter)
   {
-    if (enableFilter != null && enableFilter) {
+    boolean disable = enableFilter == null || !enableFilter;
+    boolean hasWroFile = hasWroFile(globals);
+    if (!disable && hasWroFile) {
       log.info("enabling wro filter");
       configuration.add("WroFilter", wroFilter, "before:IgnoredPaths", "before:GZIP");
     }
