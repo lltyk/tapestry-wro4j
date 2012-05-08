@@ -2,7 +2,9 @@
 
 [![Build Status](http://travis-ci.org/lltyk/tapestry-wro4j.png)](http://travis-ci.org/lltyk/tapestry-wro4j)
 
-Adds support for various [Web Resource Optimizer](http://code.google.com/p/wro4j/) components to Tapestry 5.3
+Adds support for various
+[Web Resource Optimizer](http://code.google.com/p/wro4j/)components to
+Tapestry 5.3.
 
 Included are various choices of JavaScript and CSS minifiers, and
 Less/Sass/Coffeescript transformers.
@@ -14,17 +16,6 @@ create one (a .coffee file for example), and include it on a page just as you
 would a js file:
 
     @Import(library="somefile.coffee",stylesheet="someotherfile.less")
-
-The transformers can also be associated with .js and .css files. if you link
-foo.css and a foo.less file exists, then the foo.less file is transformed and
-sent as foo.css to the browser. Unfortunately an actual empty foo.css is needed
-to satisfy Tapestry's asset-existance checking. You can enable this association
-in the AppModule like this:
-
-    public static void contributeStreamableResourceSource(MappedConfiguration<String, ResourceTransformer> configuration)
-    {
-        configuration.addInstace("css", LessCssTransformer.class);
-    }
 
 By default, Google Closure Compiler is used for JS minimization, and YUI is
 used for CSS. Other choices for JS include UglifyJSMinimizer and
@@ -45,8 +36,26 @@ flag is set. You can enable it manually in your AppModule like so:
       configuration.add(SymbolConstants.MINIFICATION_ENABLED, "true");
     }
 
+WRO4J's WroFilter will be automatically enabled (without having to add it in
+web.xml) if a wro configuration file is found. Other WRO4J features that are
+not automatically enabled can be added manually this way. For example, if the
+following wro.groovy file is present in WEB-INF, assets at
+/contextpath/wro/all.js and /contextpath/wro/all.css become available:
+
+    groups {
+      all {
+        js "/js/**.js"
+        css "/css/**.css"
+      }
+    }
+This can be turned off with the WRO4JSymbolConstants.AUTO_ENABLE_WRO_FILTER
+symbol.
+
 ## 0.9.5
 Tapestry 5.3.3  
+Added symbols for disabling automatic adding of transformers in WRO4JSymbolConstants  
+Added automatic registration of WroFilter without having to modify web.xml  
+Tweaked RequireJS support  
 
 ## 0.9.4
 WRO4J 1.4.5  
