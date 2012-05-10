@@ -3,7 +3,7 @@
 [![Build Status](http://travis-ci.org/lltyk/tapestry-wro4j.png)](http://travis-ci.org/lltyk/tapestry-wro4j)
 
 Adds support for various
-[Web Resource Optimizer](http://code.google.com/p/wro4j/)components to
+[Web Resource Optimizer](http://code.google.com/p/wro4j/) components to
 Tapestry 5.3.
 
 Included are various choices of JavaScript and CSS minifiers, and
@@ -25,7 +25,7 @@ YuiJSMinimizer. You can use one instead with this in your AppModule:
     @Primary
     public static void contributeMinimizers(MappedConfiguration<String, ResourceMinimizer> configuration)
     {
-      configuration.overrideInstace("text/javascript", UglifyJSMinimizer.class);
+      configuration.overrideInstance("text/javascript", UglifyJSMinimizer.class);
     }
 
 By default Tapestry only enables minification when the tapestry.production-mode
