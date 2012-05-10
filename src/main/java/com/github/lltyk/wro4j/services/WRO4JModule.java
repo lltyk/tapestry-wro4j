@@ -74,7 +74,7 @@ public class WRO4JModule
   @Primary
   public static void contributeMinimizers(MappedConfiguration<String, ResourceMinimizer> configuration)
   {
-    configuration.addInstance("text/javascript", GoogleClosureJSMinimizer.class);
+    configuration.addInstance("text/javascript", YuiJSMinimizer.class);
     configuration.addInstance("text/css", YuiCssMinimizer.class);
   }
 
