@@ -51,6 +51,10 @@ following wro.groovy file is present in WEB-INF, assets at
 This can be turned off with the WRO4JSymbolConstants.AUTO_ENABLE_WRO_FILTER
 symbol.
 
+## 0.9.6
+Switching default JS minimizer to YUI, since closure compiler was conflicting
+with Tapestry 5.3.3/Underscore 1.3.3
+
 ## 0.9.5
 Tapestry 5.3.3  
 Added symbols for disabling automatic adding of transformers in WRO4JSymbolConstants  
