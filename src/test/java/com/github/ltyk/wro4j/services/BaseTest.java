@@ -16,31 +16,43 @@ package com.github.ltyk.wro4j.services;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.tapestry5.ioc.Registry;
+import org.apache.tapestry5.ioc.RegistryBuilder;
 import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.internal.util.ClasspathResource;
 import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.TapestryModule;
 import org.apache.tapestry5.test.TapestryTestCase;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 
 
 public class BaseTest extends TapestryTestCase {
 
   protected static Registry registry;
+  protected HttpServletRequest mockHttpServletRequest = mockHttpServletRequest();
+  protected HttpServletResponse mockHttpServletResponse = mockHttpServletResponse();
 
 
-  @Before
-  public void createRegistry()
+  @BeforeClass
+  public static void createRegistry()
   {
-    registry = buildRegistry(TapestryModule.class, getModuleClass());
-    registry.getService(RequestGlobals.class).storeServletRequestResponse(mockHttpServletRequest(), mockHttpServletResponse());
+    registry = new RegistryBuilder().add(TapestryModule.class, getModuleClass()).build();
   }
 
-  @After
-  public void shutdownRegistry()
+  @Before
+  public void requestGlobalMocks()
+  {
+    registry.getService(RequestGlobals.class).storeServletRequestResponse(mockHttpServletRequest, mockHttpServletResponse);
+  }
+
+  @AfterClass
+  public static void shutdownRegistry()
   {
     if (registry != null) {
       registry.shutdown();
@@ -48,7 +60,7 @@ public class BaseTest extends TapestryTestCase {
   }
 
   /** Override to run test with module setting changes */
-  protected Class<?> getModuleClass()
+  protected static Class<?> getModuleClass()
   {
     return BaseTestModule.class;
   }
