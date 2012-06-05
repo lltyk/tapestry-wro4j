@@ -24,7 +24,7 @@
   
   <properties>
     <tapestry.version>5.3.3</tapestry.version>
-    <wro4j.version>1.4.5</wro4j.version>
+    <wro4j.version>1.4.7-SNAPSHOT</wro4j.version>
     <junit.version>4.10</junit.version> 
     <mockito.version>1.9.0</mockito.version>
   </properties>
