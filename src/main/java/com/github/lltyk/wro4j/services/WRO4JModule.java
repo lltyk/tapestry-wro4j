@@ -60,6 +60,7 @@ public class WRO4JModule
     }
     if (enableSass != null && enableSass) {
       configuration.addInstance("sass", SassCssTransformer.class);
+      configuration.addInstance("scss", ScssCssTransformer.class);
     }
   }
 
@@ -68,6 +69,7 @@ public class WRO4JModule
     configuration.add("coffee", "text/javascript");
     configuration.add("less", "text/css");
     configuration.add("sass", "text/css");
+    configuration.add("scss", "text/css");
   }
 
   @Contribute(ResourceMinimizer.class)
