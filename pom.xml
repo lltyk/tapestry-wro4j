@@ -71,6 +71,18 @@
       <groupId>ro.isdc.wro4j</groupId>
       <artifactId>wro4j-extensions</artifactId>
       <version>${wro4j.version}</version>
+      <exclusions>
+        <!--
+        exclude less4j as it is packaged as a standalone jar and causes 
+        duplicate classes on the classpath 
+        see https://github.com/SomMeri/less4j/issues/49
+        see https://github.com/alexo/wro4j/issues/75
+         -->
+      	<exclusion>
+      		<groupId>com.github.sommeri</groupId>
+      		<artifactId>less4j</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
      <dependency>
        <groupId>junit</groupId>

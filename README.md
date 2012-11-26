@@ -53,8 +53,7 @@ symbol.
 
 ## 0.9.7 (unreleased)
 Update Tapestry to 5.3.6 and WRO4J to 1.6.1
-TODO: less4j (pulled in by WRO4J) is a standalone JAR, so all dependencies are
-included in the JAR which likely causes problems with duplicate class files.
+Exclude less4j module from wro4j dependency as it is shiipped with unwanted classes
 See https://github.com/alexo/wro4j/issues/75 and https://github.com/SomMeri/less4j/issues/49
 
 ## 0.9.6
