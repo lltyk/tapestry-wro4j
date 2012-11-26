@@ -5,7 +5,7 @@ import java.lang.reflect.Constructor;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
-import ro.isdc.wro.manager.WroManager;
+import ro.isdc.wro.manager.factory.WroManagerFactory;
 import ro.isdc.wro.model.group.processor.Injector;
 import ro.isdc.wro.model.group.processor.InjectorBuilder;
 
@@ -18,11 +18,11 @@ public abstract class Base
   @Inject
   private Logger log;
   @Inject
-  private WroManager wroManager;
+  private WroManagerFactory wroManagerFactory;
 
   protected <T> T getInjectedProcessor(Class<T> processClass, Object ... constructorArgs) {
     try {
-      Injector injector = new InjectorBuilder(wroManager).build();
+      Injector injector = new InjectorBuilder(wroManagerFactory).build();
       Class<?>[] argTypes = new Class[constructorArgs.length];
       for (int i = 0; i < constructorArgs.length; i++) {
         if (constructorArgs[i] == null) {

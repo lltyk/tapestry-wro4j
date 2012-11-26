@@ -28,7 +28,6 @@ import ro.isdc.wro.model.resource.Resource;
 
 import com.github.lltyk.wro4j.services.GoogleClosureJSMinimizer;
 import com.github.lltyk.wro4j.services.UglifyJSMinimizer;
-import com.github.lltyk.wro4j.services.YuiJSMinimizer;
 
 /**
  * Test particular js files in Tapestry that are pain points for the various
@@ -53,13 +52,6 @@ public class TestJSMinimizerT5Compatibility extends BaseTest {
     expect(mockHttpServletRequest.getRequestURL()).andReturn(new StringBuffer("dummy")).anyTimes();
     expect(mockHttpServletRequest.getServletPath()).andReturn("dummy").anyTimes();
     replay();
-  }
-
-  @Test
-  public void testYui() throws Exception {
-    ResourceMinimizer minimizer = registry.autobuild(YuiJSMinimizer.class);
-    testUnderscore(minimizer);
-    testPrototype(minimizer);
   }
 
   @Test

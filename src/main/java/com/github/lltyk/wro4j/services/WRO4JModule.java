@@ -25,8 +25,8 @@ import ro.isdc.wro.config.Context;
 import ro.isdc.wro.config.jmx.WroConfiguration;
 import ro.isdc.wro.extensions.model.factory.GroovyModelFactory;
 import ro.isdc.wro.extensions.model.factory.JsonModelFactory;
-import ro.isdc.wro.manager.WroManager;
 import ro.isdc.wro.manager.factory.BaseWroManagerFactory;
+import ro.isdc.wro.manager.factory.WroManagerFactory;
 import ro.isdc.wro.model.factory.XmlModelFactory;
 
 
@@ -76,7 +76,7 @@ public class WRO4JModule
   @Primary
   public static void contributeMinimizers(MappedConfiguration<String, ResourceMinimizer> configuration)
   {
-    configuration.addInstance("text/javascript", YuiJSMinimizer.class);
+    configuration.addInstance("text/javascript", GoogleClosureJSMinimizer.class);
     configuration.addInstance("text/css", YuiCssMinimizer.class);
   }
 
@@ -85,11 +85,11 @@ public class WRO4JModule
     return new WroConfiguration();
   }
 
-  public static WroManager buildDefaultWroManager()
+  public static WroManagerFactory buildDefaultWroManagerFactory()
   {
     try {
       Context.set(Context.standaloneContext());
-      return new BaseWroManagerFactory().create();
+      return new BaseWroManagerFactory();
     } finally {
       Context.unset();
     }
