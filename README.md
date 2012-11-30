@@ -58,6 +58,7 @@ See https://github.com/alexo/wro4j/issues/75 and https://github.com/SomMeri/less
 Switched to better SASS implemention in WRO4J
 Switched default JS minimizer back to Google Closure
 Removed YUI JS minimizer
+Disabled @import in LessCssTransformer
 
 ## 0.9.6
 Switching default JS minimizer to YUI, since closure compiler was conflicting

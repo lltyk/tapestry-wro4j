@@ -30,11 +30,12 @@ public class LessCssTransformer extends AbstractTransformer
   public String doTransform(String url, String content) throws IOException {
     StringWriter writer = new StringWriter();
     Resource r = Resource.create(url, ResourceType.CSS);
-    CssImportPreProcessor preproc = getInjectedProcessor(CssImportPreProcessor.class);
-    preproc.process(r, new StringReader(content), writer);
-    content = writer.toString();
+    //CssImportPreProcessor preproc = getInjectedProcessor(CssImportPreProcessor.class);
+    //preproc.process(r, new StringReader(content), writer);
+    //content = writer.toString();
     writer = new StringWriter();
-    new LessCssProcessor().process(r, new StringReader(content), writer);
+    LessCssProcessor lessProcessor = getInjectedProcessor(LessCssProcessor.class);
+    lessProcessor.process(r, new StringReader(content), writer);
     return writer.toString();
   }
 }
