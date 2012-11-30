@@ -55,36 +55,37 @@ symbol.
 Update Tapestry to 5.3.6 and WRO4J to 1.6.1
 Exclude less4j module from wro4j dependency as it is shiipped with unwanted classes
 See https://github.com/alexo/wro4j/issues/75 and https://github.com/SomMeri/less4j/issues/49
+Switched to better SASS implemention in WRO4J
 
 ## 0.9.6
 Switching default JS minimizer to YUI, since closure compiler was conflicting
 with Tapestry 5.3.3/Underscore 1.3.3
 
 ## 0.9.5
-Tapestry 5.3.3  
-Added symbols for disabling automatic adding of transformers in WRO4JSymbolConstants  
-Added automatic registration of WroFilter without having to modify web.xml  
-Tweaked RequireJS support  
+Tapestry 5.3.3
+Added symbols for disabling automatic adding of transformers in WRO4JSymbolConstants
+Added automatic registration of WroFilter without having to modify web.xml
+Tweaked RequireJS support
 
 ## 0.9.4
-WRO4J 1.4.5  
-Experimental RequireJS support  
+WRO4J 1.4.5
+Experimental RequireJS support
 
 ## 0.9.3
-WRO4J 1.4.4  
+WRO4J 1.4.4
 
 ## 0.9.2
-Tapestry 5.3.2  
+Tapestry 5.3.2
 
 ## 0.9.1
-Automatically included WRO4JModule in jar manifest.  
-Added Google Closure for JS and YUI for CSS as default minimizers.  
-Fixed UglifyJS/Prototype interoperability.  
-Fixed Less import support (issue #2)  
-WRO4J 1.4.3  
+Automatically included WRO4JModule in jar manifest.
+Added Google Closure for JS and YUI for CSS as default minimizers.
+Fixed UglifyJS/Prototype interoperability.
+Fixed Less import support (issue #2)
+WRO4J 1.4.3
 
 ## 0.9
-Initial Release  
-WRO4JModule needs to be included manually with @SubModule.  
-Minifiers need to be added manually using contributeMinimizers.  
-WRO4J 1.4.2  
+Initial Release
+WRO4JModule needs to be included manually with @SubModule.
+Minifiers need to be added manually using contributeMinimizers.
+WRO4J 1.4.2

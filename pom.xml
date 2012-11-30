@@ -7,7 +7,7 @@
   <name>Tapestry WRO4J</name>
   <description>Web Resource Optimizer integration for Tapestry 5.3</description>
   <url>https://github.com/lltyk/tapestry-wro4j</url>
-  
+
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -15,20 +15,20 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
+
   <scm>
     <connection>scm:git:git@github.com:lltyk/tapestry-wro4j.git</connection>
     <developerConnection>scm:git:git@github.com:lltyk/tapestry-wro4j.git</developerConnection>
     <url>git://github.com/lltyk/tapestry-wro4j.git</url>
   </scm>
-  
+
   <properties>
     <tapestry.version>5.3.6</tapestry.version>
     <wro4j.version>1.6.1</wro4j.version>
-    <junit.version>4.10</junit.version> 
+    <junit.version>4.10</junit.version>
     <mockito.version>1.9.0</mockito.version>
   </properties>
-  
+
   <developers>
     <developer>
       <id>lltyk</id>
@@ -36,14 +36,14 @@
       <email>lltyk@hotmail.com</email>
     </developer>
   </developers>
-  
+
   <repositories>
     <repository>
       <id>apache-staging</id>
         <url>https://repository.apache.org/content/groups/staging/</url>
     </repository>
   </repositories>
-  
+
   <dependencies>
     <dependency>
       <groupId>org.apache.tapestry</groupId>
@@ -73,8 +73,8 @@
       <version>${wro4j.version}</version>
       <exclusions>
         <!--
-        exclude less4j as it is packaged as a standalone jar and causes 
-        duplicate classes on the classpath 
+        exclude less4j as it is packaged as a standalone jar and causes
+        duplicate classes on the classpath
         see https://github.com/SomMeri/less4j/issues/49
         see https://github.com/alexo/wro4j/issues/75
          -->
@@ -97,7 +97,7 @@
        <scope>test</scope>
      </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>
