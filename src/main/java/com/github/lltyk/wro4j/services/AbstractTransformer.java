@@ -43,7 +43,6 @@ public abstract class AbstractTransformer extends Base implements ResourceTransf
     this.internalSuffix = internalSuffix;
   }
 
-  @Override
   public InputStream transform(Resource source, ResourceDependencies dependencies) throws IOException {
     if (externalSuffix != null && source.getPath().toLowerCase().endsWith("." + externalSuffix)) {
       //Replace input of a .css or .js file with a .less or .coffee version

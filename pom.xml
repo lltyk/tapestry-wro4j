@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.lltyk</groupId>
   <artifactId>tapestry-wro4j</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Tapestry WRO4J</name>
   <description>Web Resource Optimizer integration for Tapestry 5.3</description>
@@ -23,8 +23,8 @@
   </scm>
   
   <properties>
-    <tapestry.version>5.3.3</tapestry.version>
-    <wro4j.version>1.4.5</wro4j.version>
+    <tapestry.version>5.3.6</tapestry.version>
+    <wro4j.version>1.6.1</wro4j.version>
     <junit.version>4.10</junit.version> 
     <mockito.version>1.9.0</mockito.version>
   </properties>
@@ -71,6 +71,18 @@
       <groupId>ro.isdc.wro4j</groupId>
       <artifactId>wro4j-extensions</artifactId>
       <version>${wro4j.version}</version>
+      <exclusions>
+        <!--
+        exclude less4j as it is packaged as a standalone jar and causes 
+        duplicate classes on the classpath 
+        see https://github.com/SomMeri/less4j/issues/49
+        see https://github.com/alexo/wro4j/issues/75
+         -->
+      	<exclusion>
+      		<groupId>com.github.sommeri</groupId>
+      		<artifactId>less4j</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
      <dependency>
        <groupId>junit</groupId>
@@ -88,6 +100,24 @@
   
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>

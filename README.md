@@ -18,8 +18,8 @@ would a js file:
     @Import(library="somefile.coffee",stylesheet="someotherfile.less")
 
 By default, Google Closure Compiler is used for JS minimization, and YUI is
-used for CSS. Other choices for JS include UglifyJSMinimizer and
-YuiJSMinimizer. You can use one instead with this in your AppModule:
+used for CSS. JS can also be processed by UglifyJSMinimizer. You can use one
+instead with this in your AppModule:
 
     @Contribute(ResourceMinimizer.class)
     @Primary
@@ -50,6 +50,11 @@ following wro.groovy file is present in WEB-INF, assets at
     }
 This can be turned off with the WRO4JSymbolConstants.AUTO_ENABLE_WRO_FILTER
 symbol.
+
+## 0.9.8 (unreleased)
+Update Tapestry to 5.3.6 and WRO4J to 1.6.1
+Exclude less4j module from wro4j dependency as it is shiipped with unwanted classes
+See https://github.com/alexo/wro4j/issues/75 and https://github.com/SomMeri/less4j/issues/49
 
 ## 0.9.6
 Switching default JS minimizer to YUI, since closure compiler was conflicting
