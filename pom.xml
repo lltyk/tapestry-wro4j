@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.lltyk</groupId>
   <artifactId>tapestry-wro4j</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.8</version>
   <packaging>jar</packaging>
   <name>Tapestry WRO4J</name>
   <description>Web Resource Optimizer integration for Tapestry 5.3</description>
