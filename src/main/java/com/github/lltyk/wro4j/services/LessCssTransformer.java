@@ -38,4 +38,8 @@ public class LessCssTransformer extends AbstractTransformer
     lessProcessor.process(r, new StringReader(content), writer);
     return writer.toString();
   }
+  
+  public String getTransformedContentType() {
+    return TapestryWRO4JConstants.CONTENT_TYPE_CSS;
+  }
 }
