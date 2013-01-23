@@ -107,10 +107,12 @@ public class WRO4JModule
     @InjectService("WroFilterWrapper") HttpServletRequestFilter wroFilter)
   {
     boolean disable = enableFilter == null || !enableFilter;
-    boolean hasWroFile = hasWroFile(globals);
-    if (!disable && hasWroFile) {
-      log.info("enabling wro filter");
-      configuration.add("WroFilter", wroFilter, "before:IgnoredPaths", "before:GZIP");
+    if (!disable) {
+      boolean hasWroFile = hasWroFile(globals);
+      if (hasWroFile) {
+        log.info("enabling wro filter");
+        configuration.add("WroFilter", wroFilter, "before:IgnoredPaths", "before:GZIP");
+      }
     }
   }
 
