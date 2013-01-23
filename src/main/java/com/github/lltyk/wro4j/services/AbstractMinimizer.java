@@ -46,7 +46,10 @@ public abstract class AbstractMinimizer extends Base implements ResourceMinimize
 
   public StreamableResource minimize(final StreamableResource input) throws IOException
   {
-    long startNanos = System.nanoTime();
+    long startNanos = -1l;
+    if (log.isDebugEnabled()) {
+    	startNanos = System.nanoTime();
+    }
     Reader reader = new InputStreamReader(input.openStream(), "UTF-8");
     final String content = IOUtils.toString(reader);
     reader.close();
@@ -57,8 +60,8 @@ public abstract class AbstractMinimizer extends Base implements ResourceMinimize
       StreamableResource output = new StreamableResourceImpl("minimized " + input.getDescription(),
         input.getContentType(), CompressionStatus.COMPRESSABLE,
         input.getLastModified(), new BytestreamCache(minimised.getBytes("UTF-8")));
-      long elapsedNanos = System.nanoTime() - startNanos;
       if (log.isDebugEnabled()) {
+        long elapsedNanos = System.nanoTime() - startNanos;
         double elapsedMillis = ((double) elapsedNanos) * NANOS_TO_MILLIS;
         log.debug(String.format("Minimized %s (%,d input bytes of %s to %,d output bytes in %.2f ms)",
           input.getDescription(), input.getSize(), resourceType, output.getSize(), elapsedMillis));
