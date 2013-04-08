@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.tapestry5.internal.services.assets.BytestreamCache;
 import org.apache.tapestry5.internal.services.assets.StreamableResourceImpl;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.assets.AssetChecksumGenerator;
 import org.apache.tapestry5.services.assets.CompressionStatus;
 import org.apache.tapestry5.services.assets.ResourceMinimizer;
 import org.apache.tapestry5.services.assets.StreamableResource;
@@ -36,6 +37,8 @@ public abstract class AbstractMinimizer extends Base implements ResourceMinimize
   private HttpServletRequest request;
   @Inject
   private HttpServletResponse response;
+  @Inject
+  private AssetChecksumGenerator assetChecksumGenerator;
 
   private final String resourceType;
 
@@ -59,7 +62,7 @@ public abstract class AbstractMinimizer extends Base implements ResourceMinimize
       // The content is minimized, but can still be (GZip) compressed.
       StreamableResource output = new StreamableResourceImpl("minimized " + input.getDescription(),
         input.getContentType(), CompressionStatus.COMPRESSABLE,
-        input.getLastModified(), new BytestreamCache(minimised.getBytes("UTF-8")));
+        input.getLastModified(), new BytestreamCache(minimised.getBytes("UTF-8")),assetChecksumGenerator);
       if (log.isDebugEnabled()) {
         long elapsedNanos = System.nanoTime() - startNanos;
         double elapsedMillis = ((double) elapsedNanos) * NANOS_TO_MILLIS;
