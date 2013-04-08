@@ -56,4 +56,8 @@ public class CoffeeScriptJsTransformer extends AbstractTransformer
     }
     return writer.toString();
   }
+  
+  public String getTransformedContentType() {
+    return TapestryWRO4JConstants.CONTENT_TYPE_JAVASCRIPT;
+  }
 }

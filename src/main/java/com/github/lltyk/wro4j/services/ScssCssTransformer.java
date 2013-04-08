@@ -31,4 +31,8 @@ public class ScssCssTransformer extends AbstractTransformer
     new RubySassCssProcessor().process(Resource.create(name, ResourceType.CSS), new StringReader(content), writer);
     return writer.toString();
   }
+  
+  public String getTransformedContentType() {
+    return TapestryWRO4JConstants.CONTENT_TYPE_CSS;
+  }
 }

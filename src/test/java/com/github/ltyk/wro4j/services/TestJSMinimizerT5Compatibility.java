@@ -10,6 +10,8 @@ import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.internal.services.assets.BytestreamCache;
 import org.apache.tapestry5.internal.services.assets.StreamableResourceImpl;
 import org.apache.tapestry5.ioc.services.SymbolSource;
+import org.apache.tapestry5.services.TapestryModule;
+import org.apache.tapestry5.services.assets.AssetChecksumGenerator;
 import org.apache.tapestry5.services.assets.CompressionStatus;
 import org.apache.tapestry5.services.assets.ResourceMinimizer;
 import org.apache.tapestry5.services.assets.StreamableResource;
@@ -37,12 +39,14 @@ import com.github.lltyk.wro4j.services.UglifyJSMinimizer;
 public class TestJSMinimizerT5Compatibility extends BaseTest {
   private static final Logger log = LoggerFactory.getLogger(TestJSMinimizerT5Compatibility.class);
   private SymbolSource symbolSource;
+  private AssetChecksumGenerator assetChecksumGenerator;
 
 
   @Before
-  public void fetchSymbolSource()
+  public void fetchRequiredServices()
   {
     symbolSource = registry.getService(SymbolSource.class);
+    assetChecksumGenerator = registry.getService(AssetChecksumGenerator.class);
   }
 
   @Before
@@ -70,8 +74,8 @@ public class TestJSMinimizerT5Compatibility extends BaseTest {
 
 
   private void testUnderscore(ResourceMinimizer minimizer) throws Exception {
-    String path = getClasspathAssetPathBySymbol("tapestry.underscore");
-    StreamableResource in = getResourceFromClasspath(path);
+    String path = "META-INF/assets/tapestry5";
+    StreamableResource in = getResourceFromClasspath(TapestryModule.class, path + "/underscore_1_4_2.js");
     StreamableResource out = minimizer.minimize(in);
     Assert.assertNotSame("same file outputted, minimization failed", in, out);
     String output = IOUtils.toString(out.openStream());
@@ -80,8 +84,8 @@ public class TestJSMinimizerT5Compatibility extends BaseTest {
   }
 
   private void testPrototype(ResourceMinimizer minimizer) throws Exception {
-    String path = getClasspathAssetPathBySymbol(SymbolConstants.SCRIPTACULOUS);
-    StreamableResource in = getResourceFromClasspath(path + "/prototype.js");
+    String path = getClasspathAssetPathBySymbol(SymbolConstants.SCRIPTACULOUS).replaceAll("^/+", "");
+    StreamableResource in = getResourceFromClasspath(TapestryModule.class, path + "/prototype.js");
     StreamableResource out = minimizer.minimize(in);
     Assert.assertNotSame("same file outputted, minimization failed", in, out);
     String output = IOUtils.toString(out.openStream());
@@ -95,10 +99,10 @@ public class TestJSMinimizerT5Compatibility extends BaseTest {
     return symbolSource.valueForSymbol(symbol).replace("classpath:", "/");
   }
 
-  private StreamableResource getResourceFromClasspath(String classpathPath) throws IOException {
+  private StreamableResource getResourceFromClasspath(Class<?> baseclass, String classpathPath) throws IOException {
     return new StreamableResourceImpl(classpathPath, "text/javascript",
       CompressionStatus.COMPRESSABLE, new Date().getTime(),
-      new BytestreamCache(IOUtils.toByteArray(getClass().getResourceAsStream(classpathPath))));
+      new BytestreamCache(IOUtils.toByteArray(baseclass.getClassLoader().getResourceAsStream(classpathPath))), assetChecksumGenerator);
   }
 
   private boolean validateJs(String js, String name) {

@@ -80,4 +80,8 @@ public class RequireJSTransformer extends Base implements ResourceTransformer
   protected String[] getAdditionalOptions() {
     return null;
   }
+  
+  public String getTransformedContentType() {
+    return TapestryWRO4JConstants.CONTENT_TYPE_JAVASCRIPT;
+  }
 }
