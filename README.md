@@ -53,7 +53,7 @@ symbol.
 
 ## 0.9.8
 Update Tapestry to 5.3.6 and WRO4J to 1.6.1
-Exclude less4j module from wro4j dependency as it is shiipped with unwanted classes
+Exclude less4j module from wro4j dependency as it is shipped with unwanted classes
 See https://github.com/alexo/wro4j/issues/75 and https://github.com/SomMeri/less4j/issues/49
 Switched to better SASS implemention in WRO4J
 Switched default JS minimizer back to Google Closure
